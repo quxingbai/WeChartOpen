@@ -1,0 +1,44 @@
+﻿<Window x:Class="WeChartOpen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeChartOpen"
+        mc:Ignorable="d"
+        Title="微信多开" Background="White" WindowStartupLocation="CenterOwner" AllowsTransparency="False" WindowStyle="None" Width="250" Height="250" Topmost="True">
+    <Grid>
+        <Border Name="BD_NoWechart">
+            
+        </Border>
+    </Grid>
+    <Window.Template>
+        <ControlTemplate TargetType="{x:Type local:MainWindow}">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  >
+                <Grid>
+                    <Border HorizontalAlignment="Center"  VerticalAlignment="Center" Background="Transparent" BorderThickness="0.5" BorderBrush="LightGray" CornerRadius="5" Width="200" Height="200" Name="BD" >
+                        <TextBlock Name="TEXT" Text="{TemplateBinding ToolTipText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Foreground="LightGray"/>
+                    </Border>
+                    <Border  AllowDrop="True" Drop="BD_Drop" DragOver="BD_DragOver" DragLeave="BD_DragLeave" Background="Transparent"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="DrogState" Value="Over">
+                    <Setter Property="Border.Background" Value="#DF1E90FF" TargetName="BD"/>
+                    <Setter Property="Foreground" Value="White" TargetName="TEXT"/>
+                </Trigger>
+                <Trigger Property="DrogState" Value="Error">
+                    <Setter Property="Border.Background" Value="#DFFF7B1E" TargetName="BD"/>
+                    <Setter Property="Foreground" Value="White" TargetName="TEXT"/>
+                </Trigger>
+                <Trigger Property="DrogState" Value="None">
+                    <Setter Property="Border.Background" Value="Transparent" TargetName="BD"/>
+                    <Setter Property="Foreground" Value="lightgray" TargetName="TEXT"/>
+                </Trigger>
+                <Trigger Property="DrogState" Value="Leave">
+                    <Setter Property="Border.Background" Value="Transparent" TargetName="BD"/>
+                    <Setter Property="Foreground" Value="lightgray" TargetName="TEXT"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Template>
+</Window>
